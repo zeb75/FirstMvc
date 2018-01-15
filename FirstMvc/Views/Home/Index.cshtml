@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Home</h2>
+
+@{
+    var txt = "";
+    if (DateTime.Now.Hour >= 12)
+    { txt = "Good Evening"; }
+    else
+    { txt = "Good Morning"; }
+}
+<p>@txt</p>

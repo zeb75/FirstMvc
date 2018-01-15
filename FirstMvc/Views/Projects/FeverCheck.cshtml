@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "FeverCheck";
+}
+
+<h2>FeverCheck</h2>
+
+@if (ViewBag.Fever != null)
+{
+    <h3>@ViewBag.Fever.Msg</h3>
+}
+
+<form action="@Url.Action("FeverCheck","Projects")" method="post">
+    <input type="number" name="temp" value="37" />
+    <input type="submit" value="Check" />
+</form>

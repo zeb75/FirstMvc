@@ -1,0 +1,27 @@
+﻿@model FirstMvc.Models.GuessNum
+@{
+    ViewBag.Title = "GuessingGame";
+}
+
+<h2>GuessingGame</h2>
+<br/>
+<h4>Enter a number between 1 and 100</h4>
+
+@if(HttpContext.Current.Request.HttpMethod == "POST")
+{
+    <h3>@Model.Msg</h3>
+}
+
+@using (Html.BeginForm("GuessingGame", "Projects", FormMethod.Post))
+
+{
+    @Html.TextBoxFor(model => model.Num, new { placeholder = "0", @type = "number" });
+    <input type="submit" value="Guess" class="btn btn-default" >
+}
+
+
+
+
+
+
+

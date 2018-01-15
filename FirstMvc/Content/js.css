@@ -1,0 +1,85 @@
+h1{
+text-align: center;
+}
+#hid{
+text-align; center;
+}
+#mapHere{
+	position: relative;
+	left: 218px;
+}
+
+#restartGame{
+	position: relative;
+	left: 218px;
+}
+
+#newGame{
+	position: relative;
+	left: 218px;
+}
+	
+	
+.mapArea{
+	font-size: 1px;
+	background-color: white;
+	width: 684px;
+	height: 576px;
+}
+
+.emptyBlock {
+    background-image: url('Sokoban/emptyBlock.gif');
+    margin: 0px;
+    width: 36px;
+    height: 36px;
+    display: inline-block;
+}
+
+.wall {
+    background-image: url('Sokoban/wall.gif');
+    margin: 0px;
+    width: 36px;
+    height: 36px;
+    display: inline-block;
+}
+
+.goal {
+    background-image: url('Sokoban/goal.gif');
+    margin: 0px;
+    width: 36px;
+    height: 36px;
+    display: inline-block;
+}
+
+.movableBlock {
+    background-image: url('Sokoban/movableBlock.gif');
+    margin: 0px;
+    width: 36px;
+    height: 36px;
+    display: inline-block;
+}
+
+.forest {
+    background-color: white;
+    margin: 0px;
+    width: 36px;
+    height: 36px;
+    display: inline-block;
+}
+
+.player {
+    background-image: url('Sokoban/player.gif');
+    margin: 0px;
+    width: 36px;
+    height: 36px;
+    display: inline-block;
+}
+.goal.movableBlock {
+    background-image: url('Sokoban/movableBlockRed.gif');
+    margin: 0px;
+    width: 36px;
+    height: 36px;
+    display: inline-block;
+}
+
+
