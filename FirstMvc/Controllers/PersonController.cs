@@ -12,9 +12,20 @@ namespace FirstMvc.Controllers
         // GET: Person
         public ActionResult Index()
         {
+            List<Person> personList;
+
+            if (Session["Add"] != null)
+            {
+                personList = (List<Person>)Session["Add"];
+            }
+            else
+            {
+                personList = Person._people;
+            }
+
             var model =
-                from r in Person.People
-                orderby r.Name
+                from r in personList
+                orderby r.Id
                 select r;
 
             return View(model);
@@ -29,68 +40,69 @@ namespace FirstMvc.Controllers
         // GET: Person/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new Person());
         }
 
         // POST: Person/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(string Name, string PhoneNumber, string City)
         {
-            try
+            List<Person> personList;
+           
+            if (Session["Add"] != null)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                personList = (List <Person> )Session["Add"];
             }
-            catch
+            else
             {
-                return View();
+                personList = Person._people;
             }
+            personList.Add(new Person() { Name = Name, PhoneNumber = PhoneNumber, City = City });
+            Session["Names"] = personList;
+            return RedirectToAction("index");
         }
 
         // GET: Person/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var person = Person._people.Single(r => r.Id == id);
+            return View(person);
         }
 
         // POST: Person/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
-            try
+            var person = Person._people.Single(r => r.Id == id);
+            if(TryUpdateModel(person))
             {
-                // TODO: Add update logic here
-
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(person);
         }
 
-        // GET: Person/Delete/5
+        // GET: PeopleReviews/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var review = Person._people.Single(r => r.Id == id);
+            if (review == null)
+            {
+                return HttpNotFound();
+            }
+            return View(review);
         }
 
-        // POST: Person/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        // POST: PeopleReviews/Delete/5
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var review = Person._people.Single(r => r.Id == id);
+            Person._people.Remove(review);
+            return RedirectToAction("Index");
         }
- 
+
+
     }
 }

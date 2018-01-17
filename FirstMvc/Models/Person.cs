@@ -7,12 +7,18 @@ namespace FirstMvc.Models
 {
     public class Person
     {
+        static int idCount = 0;
+        public int Id { get; set; }
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
         public String City { get; set; }
 
+        public Person()
+        {
+            Id = idCount++;
+        }
 
-        static public List<Person> People = new List<Person>
+        static public List<Person> _people = new List<Person>
         {
             new Person
             {
@@ -43,7 +49,7 @@ namespace FirstMvc.Models
             },
 
                 new Person
-            {
+            {   
                 Name = "Dimitrij Soroka",
                 PhoneNumber = "0765867714",
                 City = "Ekaterinburg",
