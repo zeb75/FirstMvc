@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Staff";
 }
-<h2>Index</h2>
+<h2>Staff</h2>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -39,7 +39,7 @@
     }
 </table>
 <form action="@Url.Action("Index", "Person")" method="post">
-    <input type="search" name="Search" value="" />
+    <input type="text" name="search" value="" />
     <input type="submit" value="Search" />
 </form>
 

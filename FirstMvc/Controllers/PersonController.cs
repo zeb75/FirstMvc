@@ -25,10 +25,27 @@ namespace FirstMvc.Controllers
 
             var model =
                 from r in personList
-                orderby r.Id
+                orderby r.Name
                 select r;
 
             return View(model);
+        }
+        [HttpPost]
+        public ActionResult Index(string search)
+        {
+            if (string.IsNullOrEmpty(search))
+            {
+                return View(Person._people);
+            }
+            List<Person>  personList = new List<Person>();
+            foreach (var item in Person._people)
+            {
+                if (item.City.ToLower().Contains(search.ToLower()) || item.Name.ToLower().Contains(search.ToLower()))
+                {
+                    personList.Add(item);
+                }
+            }
+            return View(personList);
         }
 
         // GET: Person/Details/5
