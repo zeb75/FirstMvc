@@ -1,0 +1,13 @@
+﻿@model FirstMvc.Models.Person
+
+
+        @Html.DisplayFor(modelItem => Model.Name)
+   
+        @Html.DisplayFor(modelItem => Model.PhoneNumber)
+   
+        @Html.DisplayFor(modelItem => Model.City)
+  
+        @Html.ActionLink("Delete", "Delete", new { id = Model.Id }) |
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+
+<br/>

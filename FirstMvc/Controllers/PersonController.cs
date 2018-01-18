@@ -120,6 +120,9 @@ namespace FirstMvc.Controllers
             return RedirectToAction("Index");
         }
 
-
+        public ActionResult _Person(Person person)
+        {
+            return PartialView(person);
+        }
     }
 }
