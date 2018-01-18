@@ -124,5 +124,11 @@ namespace FirstMvc.Controllers
         {
             return PartialView(person);
         }
+
+        public ActionResult PartPerson(int id)
+        {
+            Person temp = Person._people.SingleOrDefault(c => c.Id == id);
+            return PartialView("_Person", temp);
+        }
     }
 }

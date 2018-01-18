@@ -6,14 +6,23 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<div class="row">
 
-@foreach (var item in Model)
-{
-    Html.RenderAction("_Person", item);
-}
-<br/>
-<form action="@Url.Action("Index", "Person")" method="post">
-    <input type="text" name="search" value="" />
-    <input type="submit" value="Search" />
-</form>
+    <div class="col-md-6">
+        @foreach (var item in Model)
+        {
+            @Html.Action("PartPerson", new { id = item.Id })
+        }
+    </div>
+
+    <div class="col-md-6">
+        <form action="@Url.Action("Index", "Person")" method="post">
+            <input type="text" name="search" value="" />
+            <input type="submit" value="Search" />
+        </form>
+    </div>
+
+</div>
+
+
 
