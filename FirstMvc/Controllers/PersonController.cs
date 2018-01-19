@@ -48,12 +48,7 @@ namespace FirstMvc.Controllers
             return View(personList);
         }
 
-        // GET: Person/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
+    
         // GET: Person/Create
         public ActionResult Create()
         {
@@ -98,37 +93,42 @@ namespace FirstMvc.Controllers
 
             return View(person);
         }
-
-        // GET: PeopleReviews/Delete/5
-        public ActionResult Delete(int id)
+        
+        public ActionResult AjaxEditPerson(int id)
         {
-            var review = Person._people.Single(r => r.Id == id);
-            if (review == null)
-            {
-                return HttpNotFound();
-            }
-            return View(review);
+
+
         }
 
-        // POST: PeopleReviews/Delete/5
-        [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
-        {
 
-            var review = Person._people.Single(r => r.Id == id);
-            Person._people.Remove(review);
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult _Person(Person person)
+        public ActionResult AjaxRemovePerson(int id)
         {
-            return PartialView(person);
+            Person._people.Remove(Person._people.SingleOrDefault(c => c.Id == id));
+            return Content("");
         }
 
         public ActionResult PartPerson(int id)
         {
             Person temp = Person._people.SingleOrDefault(c => c.Id == id);
+
             return PartialView("_Person", temp);
         }
+
+
     }
+    //public ActionResult _Person(Person person)
+    //    {
+    //        return PartialView(person);
+    //    }
+
+    //    public ActionResult PartPerson(int id)
+    //    {
+    //        Person temp = Person._people.SingleOrDefault(c => c.Id == id);
+    //        return PartialView("_Person", temp);
+    //    }
+
+
+
+
 }
+
