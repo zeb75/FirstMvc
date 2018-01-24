@@ -56,13 +56,16 @@ namespace FirstMvc.Controllers
         [HttpPost]
         public ActionResult SaveAjaxCreatePerson(int id, [Bind(Exclude = "")] Person person)
         {
-            Person me = new Person();
-            me.Name = person.Name;
-            me.PhoneNumber = person.PhoneNumber;
-            me.City = person.City;
-            Person._people.Add(me);
-
-            return PartialView("_Aperson", me);
+                Person me = new Person();
+            if (ModelState.IsValid)
+            {         
+                me.Name = person.Name;
+                me.PhoneNumber = person.PhoneNumber;
+                me.City = person.City;
+                Person._people.Add(me);
+            }
+                return PartialView("_Aperson", me);
+            
         }
 
         [HttpGet]
@@ -75,11 +78,12 @@ namespace FirstMvc.Controllers
         public ActionResult SaveAjaxEditPerson(int id,[Bind(Exclude = "")] Person person)
         {
             Person toUpdate = Person._people.SingleOrDefault(c => c.Id == id);
-
-            toUpdate.Name = person.Name;
-            toUpdate.PhoneNumber = person.PhoneNumber;
-            toUpdate.City = person.City;
-
+            if (ModelState.IsValid)
+            {
+                toUpdate.Name = person.Name;
+                toUpdate.PhoneNumber = person.PhoneNumber;
+                toUpdate.City = person.City;
+            }
             return PartialView("_Aperson", person);
 
         }
