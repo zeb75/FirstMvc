@@ -3,46 +3,22 @@
     ViewBag.Title = "Staff";
 }
 <h2>Staff</h2>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
+
 <div class="row">
 
     <div class="col-md-6" id="indexlist">
 
         @foreach (var item in Model)
         {
-        <div class="row" id="@("PersonId" + item.Id)">
-            <div class="col-md-4">
-                @Html.Action("PartPerson", new { id = item.Id })
-            </div>
-            <div class="col-md-4">
-                @Ajax.ActionLink("Remove", "AjaxRemovePerson", new { id = item.Id },
-                                 new AjaxOptions
-                                 {
-                                     InsertionMode = InsertionMode.Replace,
-                                     UpdateTargetId = $"PersonId" + item.Id
-                                 }
-                             )
-            </div>
-            <div class="col-md-4">
-                @Ajax.ActionLink("Edit", "AjaxEditPerson", new { id = item.Id },
-                                 new AjaxOptions
-                                 {
-                                     InsertionMode = InsertionMode.Replace,
-                                     UpdateTargetId = $"PersonId" + item.Id
-                                 }
-                             )
-            </div>
-        </div>
+        @Html.Partial("_Aperson", item)
         }
+        <span id="newPersonHere"></span>
     </div>
 
     <div class="col-md-6">
-        <form action="@Url.Action("Index", "Person")" method="post">
-            <input type="text" name="search" value="" />
-            <input type="submit" value="Search" />
-        </form>
-    </div>
+            @Html.Action("AjaxCreatePerson")
+        </div>
 </div>
+
 

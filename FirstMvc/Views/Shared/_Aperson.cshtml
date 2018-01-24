@@ -1,0 +1,27 @@
+﻿@model FirstMvc.Models.Person
+
+<div class="row" id="@("PersonId" + Model.Id)">
+    <div class="col-md-8">
+        @Html.Action("PartPerson", new { id = Model.Id })
+    </div>
+
+    <div class="col-md-2">
+        @Ajax.ActionLink("Edit", "AjaxEditPerson", new { id = Model.Id },
+                           new AjaxOptions
+                           {
+                               InsertionMode = InsertionMode.Replace,
+                               UpdateTargetId = $"PersonId" + Model.Id
+                           }
+                       )
+    </div>
+    <div class="col-md-2">
+        @Ajax.ActionLink("Remove", "AjaxRemovePerson", new { id = Model.Id },
+                           new AjaxOptions
+                           {
+                               InsertionMode = InsertionMode.Replace,
+                               UpdateTargetId = $"PersonId" + Model.Id
+                           }
+                       )
+    </div>
+
+</div>

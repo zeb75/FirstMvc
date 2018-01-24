@@ -57,7 +57,7 @@ function drawMap()
 				tile.classList.add("emptyBlock");			// add css class "emptyBlock" to the element
 			}
 			
-			tile.setAttribute("Id", (y + ',' +x));
+			tile.setAttribute("Id", (y + ',' + x));
 			map.appendChild(tile);
 		}
 		

@@ -9,7 +9,6 @@ namespace FirstMvc.Controllers
 {
     public class PersonController : Controller
     {
-        // GET: Person
         public ActionResult Index()
         {
             List<Person> personList;
@@ -30,6 +29,7 @@ namespace FirstMvc.Controllers
 
             return View(model);
         }
+
         [HttpPost]
         public ActionResult Index(string search)
         {
@@ -37,7 +37,7 @@ namespace FirstMvc.Controllers
             {
                 return View(Person._people);
             }
-            List<Person>  personList = new List<Person>();
+            List<Person> personList = new List<Person>();
             foreach (var item in Person._people)
             {
                 if (item.City.ToLower().Contains(search.ToLower()) || item.Name.ToLower().Contains(search.ToLower()))
@@ -48,58 +48,48 @@ namespace FirstMvc.Controllers
             return View(personList);
         }
 
-    
-        // GET: Person/Create
-        public ActionResult Create()
+        [HttpGet]
+        public ActionResult AjaxCreatePerson()
         {
-            return View(new Person());
+            return PartialView("_CreatePerson", new Person());
         }
-
-        // POST: Person/Create
         [HttpPost]
-        public ActionResult Create(string Name, string PhoneNumber, string City)
+        public ActionResult SaveAjaxCreatePerson(int id, [Bind(Exclude = "")] Person person)
         {
-            List<Person> personList;
-           
-            if (Session["Add"] != null)
-            {
-                personList = (List <Person> )Session["Add"];
-            }
-            else
-            {
-                personList = Person._people;
-            }
-            personList.Add(new Person() { Name = Name, PhoneNumber = PhoneNumber, City = City });
-            Session["Names"] = personList;
-            return RedirectToAction("index");
+            Person me = new Person();
+            me.Name = person.Name;
+            me.PhoneNumber = person.PhoneNumber;
+            me.City = person.City;
+            Person._people.Add(me);
+
+            return PartialView("_Aperson", me);
         }
 
-        // GET: Person/Edit/5
-        public ActionResult Edit(int id)
-        {
-            var person = Person._people.Single(r => r.Id == id);
-            return View(person);
-        }
-
-        // POST: Person/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            var person = Person._people.Single(r => r.Id == id);
-            if(TryUpdateModel(person))
-            {
-                return RedirectToAction("Index");
-            }
-
-            return View(person);
-        }
-        
+        [HttpGet]
         public ActionResult AjaxEditPerson(int id)
         {
+            return PartialView("_EditPerson", Person._people.SingleOrDefault(c => c.Id == id));
+        }
 
+        [HttpPost]
+        public ActionResult SaveAjaxEditPerson(int id,[Bind(Exclude = "")] Person person)
+        {
+            Person toUpdate = Person._people.SingleOrDefault(c => c.Id == id);
+
+            toUpdate.Name = person.Name;
+            toUpdate.PhoneNumber = person.PhoneNumber;
+            toUpdate.City = person.City;
+
+            return PartialView("_Aperson", person);
 
         }
 
+        [HttpGet]
+        public ActionResult AjaxCancelPerson(int id)
+
+        {
+            return PartialView("_Aperson", Person._people.SingleOrDefault(c => c.Id == id));
+        }
 
         public ActionResult AjaxRemovePerson(int id)
         {
@@ -116,17 +106,7 @@ namespace FirstMvc.Controllers
 
 
     }
-    //public ActionResult _Person(Person person)
-    //    {
-    //        return PartialView(person);
-    //    }
-
-    //    public ActionResult PartPerson(int id)
-    //    {
-    //        Person temp = Person._people.SingleOrDefault(c => c.Id == id);
-    //        return PartialView("_Person", temp);
-    //    }
-
+  
 
 
 
