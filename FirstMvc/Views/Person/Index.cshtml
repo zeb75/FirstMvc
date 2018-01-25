@@ -4,6 +4,10 @@
 }
 <h2>Staff</h2>
 
+<div class="row">
+    @Html.Partial("_SearchPeople")
+</div>
+
 
 <div class="row">
 
@@ -11,14 +15,14 @@
 
         @foreach (var item in Model)
         {
-        @Html.Partial("_Aperson", item)
+            @Html.Partial("_Aperson", item)
         }
         <span id="newPersonHere"></span>
     </div>
 
     <div class="col-md-6">
-            @Html.Action("AjaxCreatePerson")
-        </div>
+        @Html.Action("AjaxCreatePerson")
+    </div>
 </div>
 
 

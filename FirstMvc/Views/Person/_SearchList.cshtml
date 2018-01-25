@@ -1,0 +1,7 @@
+﻿@model IEnumerable<FirstMvc.Models.Person>
+
+@foreach (var item in Model)
+{
+    @Html.Partial("_Aperson", item)
+}
+<span id="BottomOfList"></span>

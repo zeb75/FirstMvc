@@ -199,6 +199,8 @@
     <Content Include="Views\Shared\_EditPerson.cshtml" />
     <Content Include="Views\Shared\_Aperson.cshtml" />
     <Content Include="Views\Shared\_CreatePerson.cshtml" />
+    <Content Include="Views\Person\_SearchList.cshtml" />
+    <Content Include="Views\Person\_SearchPeople.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

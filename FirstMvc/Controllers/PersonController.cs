@@ -108,7 +108,26 @@ namespace FirstMvc.Controllers
             return PartialView("_Person", temp);
         }
 
+        [HttpPost]
+        public ActionResult SearchPeople(string SearchBy, string SearchValue)
+        {
 
+            List<Person> SearchList = Person._people;
+
+            if (SearchBy == "City")  //Search for City
+            {
+                SearchList = SearchList.Where(r => r.City.ToLower().Contains(SearchValue.ToLower()) || SearchValue == null).ToList();
+
+                return PartialView("_SearchList", SearchList);
+            }
+            else if (SearchBy == "Name")    //Search for Name
+            {
+                SearchList = SearchList.Where(r => r.Name.ToLower().Contains(SearchValue.ToLower()) || SearchValue == null).ToList();
+
+                return PartialView("_SearchList", SearchList);
+            }
+            return PartialView("_SearchList", SearchList);
+        }
     }
   
 

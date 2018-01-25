@@ -1,0 +1,20 @@
+﻿@using (Ajax.BeginForm("SearchPeople", "Person",
+    new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = $"indexlist"
+
+    }))
+{
+    <div class="container">
+        @*  the Search Btn and The text *@
+        <b>Search By:</b>
+        <select id="SearchBy" name="SearchBy">
+            <option value="Name">Name</option>
+            <option value="City">City</option>
+        </select><br /><br />
+        <input type="text" name="SearchValue" value="" />
+        <input type="submit" value="Search" /><br /><br />
+    </div>
+}
+
