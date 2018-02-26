@@ -19,8 +19,14 @@
     <input type="submit" value="Guess" class="btn btn-default" >
 }
 
+@using (Html.BeginForm("GuessingGame", "Projects", FormMethod.Get))
+
+{
+    <input type="submit" value="Restart" class="btn btn-default">
+}
 
 
+@Session["Answer"]
 
 
 

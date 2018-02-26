@@ -9,7 +9,9 @@ namespace FirstMvc.Controllers
 {
     public class ProjectsController : Controller
     {
-        private static Random rng = new Random();
+
+
+        private static Random rng = new Random(DateTimeOffset.Now.Millisecond);
 
         public ActionResult Index()
         {
@@ -24,7 +26,8 @@ namespace FirstMvc.Controllers
         [HttpGet]
         public ActionResult GuessingGame()
         {
-            this.Session["Answer"] = rng.Next(1, 100);
+            int rnd = rng.Next(1, 100);
+            this.Session["Answer"] = rnd;
             this.Session["GuessList"] = new List<int>();
             GuessNum guess = new GuessNum
             {
